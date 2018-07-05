@@ -1,8 +1,11 @@
 import { Router }     from 'express'
-import verifyToken    from '../utils/verifyToken'
 
-// Collections
-import activitydata          from './activitydata'
+import wrapResponseBody from '../middleware/wrapResponseBody'
+import verifyToken 	from '../middleware/verifyToken'
+import setHeader 		from '../middleware/setHeader'
+// Router Collections
+import user						from './user'
+import auth						from './auth'
 
 export default function() {
 	var api = Router()
@@ -10,13 +13,16 @@ export default function() {
   // perhaps expose some API metadata at the root
 	api.get('/', (req, res) => {
 		res.json({
-			message : 'Hello DeFacto!'
+			message : 'Hello Magento!'
 		})
 	})
 
-  //api.use('/activitydata', activitydata)
+	//api.use('/user', setHeader, user, wrapResponseBody)
+	api.use('/user', verifyToken, setHeader, user, wrapResponseBody)
+	//Skip the token virify
+	//api.use('/user', setHeader, user, wrapResponseBody)
 	//TODO : add verifyToken milddleware
-  api.use('/activitydata', verifyToken, activitydata)
+  api.use('/auth', auth)
 
 	return api
 }
