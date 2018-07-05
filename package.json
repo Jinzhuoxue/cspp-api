@@ -1,7 +1,7 @@
 {
-  "name": "orsay-defacto-api",
+  "name": "orsay-rest-api",
   "version": "1.0.0",
-  "description": "REST API service opened to DeFacto Platform",
+  "description": "Orsay REST API service",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -35,8 +35,7 @@
     "http": "0.0.0",
     "jsonwebtoken": "^5.4.1",
     "method-override": "^2.3.5",
-    "morgan": "^1.6.1",
-    "nodemailer": "^1.10.0"
+    "morgan": "^1.6.1"
   },
   "peerDependencies": {
     "express": "^4.0",
