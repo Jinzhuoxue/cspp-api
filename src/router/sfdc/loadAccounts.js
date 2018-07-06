@@ -1,5 +1,4 @@
 import _ from 'underscore'
-import {OAuth, DataService} from 'forcejs';
 import errors          from '../../errors'
 
 export default async function(req, res, next) {
