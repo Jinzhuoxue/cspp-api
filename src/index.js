@@ -8,24 +8,8 @@ import router         from './router'
 import cors           from 'cors'
 import helmet         from 'helmet'
 import responseTime from 'response-time'
-import multer from 'multer'
-
-let upload  = multer({ storage: multer.memoryStorage() });
 
 const app = express()
-
-app.post('/single', upload.single('file'), (req, res) => {
-	console.dir(req.headers);
-  console.log(req.body);
-  console.log(req.file);
-  res.send();
-});
-
-app.post('/array', upload.array('somefile'), (req, res) => {
-  console.log(req.body)
-  console.log(req.files);
-  res.send();
-});
 
 app.server = http.createServer(app)
 
@@ -54,18 +38,7 @@ app.use(bodyParser.json({
 
 app.use(bodyParser.raw({ type: 'application/json' }))
 
-// app.use(bodyParser.raw({ type: 'multipart/form-data' }))
-
-
-// application/x-www-form-urlencoded
-// text/plain
-// application/json
-//  text/xml
-// text/html
-
 app.use(responseTime())
-
-//app.use(methodOverride())
 
 app.use(boom());
 
@@ -76,13 +49,12 @@ app.use(boom());
 app.use('/api/v1/', router())
 
 app.use('/', (req, res, next) => {
-	// console.log('empty queried.');
-  // console.log(req.body.user.name);
-  //   console.log(req.body.user.email);
   res.boom.notFound();
   return
 })
 
-app.server.listen(process.env.PORT || 8080)
+let port = process.env.PORT || 8080
 
-console.log(`Orsay Commerce Cloud REST API server is running`)
+app.server.listen(port)
+
+console.log(`REST API server is running on port : ${port}`)

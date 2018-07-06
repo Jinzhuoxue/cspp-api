@@ -1,5 +1,5 @@
 //import { Router } from 'express';
-import wrapResponseBody	from './wrapResponseBody'
+//import wrapResponseBody	from './wrapResponseBody'
 import parseRequestBody	from './parseRequestBody'
 
 /*export default function() {
@@ -12,6 +12,5 @@ import parseRequestBody	from './parseRequestBody'
 }*/
 
 export default {
-  wrapResponseBody : wrapResponseBody,
 	parseRequestBody : parseRequestBody
 }

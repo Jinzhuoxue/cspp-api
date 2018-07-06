@@ -1,10 +1,9 @@
 import { Router }     from 'express'
 
-import wrapResponseBody from '../middleware/wrapResponseBody'
 import verifyToken 	from '../middleware/verifyToken'
 import setHeader 		from '../middleware/setHeader'
 // Router Collections
-import user						from './user'
+import sfdc						from './sfdc'
 import auth						from './auth'
 
 export default function() {
@@ -17,10 +16,9 @@ export default function() {
 		})
 	})
 
-	//api.use('/user', setHeader, user, wrapResponseBody)
-	api.use('/user', verifyToken, setHeader, user, wrapResponseBody)
+	//api.use('/user', verifyToken, setHeader, user)
 	//Skip the token virify
-	//api.use('/user', setHeader, user, wrapResponseBody)
+	api.use('/sfdc', sfdc)
 	//TODO : add verifyToken milddleware
   api.use('/auth', auth)
 

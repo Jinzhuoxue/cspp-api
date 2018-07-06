@@ -32,10 +32,20 @@
     "es6-promisify": "^3.0.0",
     "express": "^4.13.3",
     "express-boom": "^2.0.0",
+    "forcejs": "^2.2.1",
+    "helmet": "^3.12.1",
     "http": "0.0.0",
+    "joi": "^13.4.0",
     "jsonwebtoken": "^5.4.1",
+    "knex": "^0.15.0",
     "method-override": "^2.3.5",
-    "morgan": "^1.6.1"
+    "morgan": "^1.6.1",
+    "nodemon": "^1.17.5",
+    "pg": "^7.4.3",
+    "response-time": "^2.3.2",
+    "string": "^3.3.3",
+    "underscore": "^1.9.1",
+    "uniqid": "^5.0.3"
   },
   "peerDependencies": {
     "express": "^4.0",

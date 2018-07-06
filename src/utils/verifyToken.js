@@ -15,12 +15,13 @@ export default function (req, res, next) {
   if (token) {
 
     // verifies secret and checks exp
-    jwt.verify(token, process.env.JWT_SECRET, {
-      issuer: process.env.JWT_ISSUER
+    jwt.verify(token, process.env.JWT_SECRET || 'csapppwd', {
+      issuer: process.env.JWT_ISSUER || 'csapp'
     },(err, decoded) => {
       if (err) {
         return res.boom.badRequest('Token is not valid')
       } else {
+        console.dir(decoded)
         // if everything is good, save to request for use in other routes
         req.decoded = decoded;
         next()
