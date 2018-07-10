@@ -130,14 +130,20 @@ export async function verifyNewsLettter(user, keys){
     //Find the user by specified email or phone return the field value including in keys
     try {
       //console.log(keys)
-      let res = await db(config.DB_TABLE.newsletter)
-      .select(keys || ['sfid', 'phone', 'email'])
-      .where('password', password)
-      .where(function(){
-        this.where('email', email).orWhere('phone', phone)
-      })
-      .limit(1)
-
+      let res = null
+      if(email){
+        res = await db(config.DB_TABLE.newsletter)
+                    .select(keys || ['sfid', 'phone', 'email'])
+                    .where('password', password)
+                    .where('email', email)
+                    .limit(1)
+      }else if(phone){
+        res = await db(config.DB_TABLE.newsletter)
+                  .select(keys || ['sfid', 'phone', 'email'])
+                  .where('password', password)
+                  .where('phone', phone)
+                  .limit(1)
+      }
       console.dir(res[0])
 
       console.log('Successfully Entered for res[0]: '+JSON.stringify(res[0]));
